@@ -8,18 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: NPM SemVer
+      - name: Tag
         # You may pin to the exact commit or the version.
         # uses: odinr/action-npm-semver@37020c4b623853993ecaa7dd0f3d99b9ad5f2c2f
-        uses: odinr/action-npm-semver@v1
-        with:
-          # github access token (used for 'version.latest')
-          token: ${{ github.token }}
-          # repo owner (used for 'version.latest')
-          #owner: # optional
-          # repo repo (used for 'version.latest')
-          #repo: # optional
-          # name of tag/ref, version, 'latest' or 'current'
-          #version: # optional
-          # increase version. when prerelease a provide the type of bump and tag, divided by space (prerelease pr9)
-          bump: minor # optional
+        run:
+          export VERSION=$(docker run --rm -v $(pwd):/repo codacy/git-version)
+          git tag $VERSION
+          git push --tags
