@@ -19,28 +19,17 @@ jobs:
       - name: Git Version
         uses: codacy/git-version@2.2.0
       
-      - name: GitHub Tag
+      - name: git Tag
         # You may pin to the exact commit or the version.
-        # uses: mathieudutour/github-tag-action@331898d5052eedac9b15fec867b5ba66ebf9b692
-        uses: mathieudutour/github-tag-action@v5.5
-        with:
-          # Required for permission to tag the repo.
-          github_token: ${{ secrets.TOKEN }}
-          # Which type of bump to use when none explicitly provided (default: `patch`).
-          default_bump: minor # optional, default is patch
-          # A prefix to the tag name (default: `v`).
-          tag_prefix: ""
-          # A suffix to a pre-release tag name (default: `<branch>`).
-          #append_to_pre_release_tag: # optional
-          # Custom tag name. If specified, it overrides bump settings.
-          #custom_tag: # optional
-          # Comma separated list of release rules. Format: `<keyword>:<release_type>`. Example: `hotfix:patch,pre-feat:preminor`.
-          #custom_release_rules: # optional
-          # Comma separated list of branches (bash reg exp accepted) that will generate the release tags. Other branches and pull-requests generate versions postfixed with the commit hash and do not generate any tag. Examples: `master` or `.*` or `release.*,hotfix.*,master`...
-          #release_branches: # optional, default is master,main
-          # Comma separated list of branches (bash reg exp accepted) that will generate pre-release tags.
-          #pre_release_branches: # optional
-          # Boolean to create an annotated tag rather than lightweight.
-          create_annotated_tag: true # optional, default is false
-          # Do not perform tagging, just calculate next version and changelog, then exit.
-          #dry_run: # optional, default is false
+        # uses: pkg-src/github-action-git-bash@d7e3f57b86fcf5d919a5ba685d459583735b7611
+        run: echo $VERSION
+      - name: Semantic Version
+        # You may pin to the exact commit or the version.
+        # uses: ncipollo/semantic-version-action@9fd46cb2499bd4ae1a03b4e95d7f8adf63b1b375
+        uses: ncipollo/semantic-version-action@v1
+        #with:
+          # An optional tag to be used for comparison. If this is omitted the git ref will be used (if it is a tag).
+          #tag: # optional, default is 
+        
+        
+   
