@@ -25,7 +25,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.5
         with:
           # Required for permission to tag the repo.
-          github_token: "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"
+          github_token: ${{ secrets.TOKEN }}
           # Which type of bump to use when none explicitly provided (default: `patch`).
           default_bump: minor # optional, default is patch
           # A prefix to the tag name (default: `v`).
