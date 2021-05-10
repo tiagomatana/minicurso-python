@@ -1,33 +1,26 @@
-# .github/workflows/version.yml
-name: Git Version
-
+name: Bump version
 on:
   push:
     branches:
       - master
-
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.5
         with:
-          ref: ${{ github.head_ref }}   # checkout the correct branch name
-          fetch-depth: 0                # fetch the whole repo history
-
-      - name: Git Version
-        uses: codacy/git-version@2.2.0
-        with: 
-          run: echo $VERSION
-        
-      - name: Semantic Version
-        # You may pin to the exact commit or the version.
-        # uses: ncipollo/semantic-version-action@9fd46cb2499bd4ae1a03b4e95d7f8adf63b1b375
-        uses: ncipollo/semantic-version-action@v1
+          github_token: ${{ secrets.TOKEN }}
+      - name: Create a GitHub release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          # An optional tag to be used for comparison. If this is omitted the git ref will be used (if it is a tag).
-          tag: 3.0.1 # optional, default is 
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
         
         
    
