@@ -28,7 +28,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.TOKEN }}
         run: |
-          ./git-release.sh $(./git-version.sh) $(git log -1 --pretty=%B) $TOKEN
+          ./git-release.sh $(./git-version.sh) $(git log -1 --pretty=%B) ${{ env.TOKEN }}
      
         
 
