@@ -30,6 +30,7 @@ jobs:
           git config --global user.name "Tiago Matana"
           git fetch --all
           git fetch --tags origin
+          terraform init
           terraform plan
           terraform apply -auto-approve
      
