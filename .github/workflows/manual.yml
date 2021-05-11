@@ -16,7 +16,6 @@ jobs:
           pip install -U git-semver
           git config --global user.email "tiago.matana@gmail.com"
           git config --global user.name "Tiago Matana"
-          git config --global github.token ${{ secrets.TOKEN }}
           git fetch --all
           git fetch --tags
       - name: Create Tag
