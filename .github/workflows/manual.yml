@@ -32,7 +32,7 @@ jobs:
         uses: wei/curl@v1.1.1
         with:
           args: |
-            -X POST -H "Accept: application/vnd.github.v3+json;" -H "Authorization: token ${{ secrets.TOKEN }}" -d "$(./git-release.sh $VERSION $MSG)" https://api.github.com/repos/$repo_full_name/releases
+            -X POST -H "Accept: application/vnd.github.v3+json;" -H "Authorization: token ${{ secrets.TOKEN }}" -d '{"tag_name": $VERSION}' https://api.github.com/repos/$repo_full_name/releases
      
         
 
