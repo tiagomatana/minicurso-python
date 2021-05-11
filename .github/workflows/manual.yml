@@ -24,11 +24,11 @@ jobs:
           MSG=$(git log -1 --pretty=%B)
           git tag -a $VERSION -m '$MSG'
           git push --tags
-      - shell: bash
+      - name: Push Release
         env:
           TOKEN: ${{ secrets.TOKEN }}
         run: |
-          ./git-release.sh $(./git-version.sh) $(git log -1 --pretty=%B) ${{ env.TOKEN }}
+          ./git-release.sh $(./git-version.sh) $(git log -1 --pretty=%B) $TOKEN
      
         
 
