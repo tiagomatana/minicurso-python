@@ -26,13 +26,13 @@ jobs:
           MSG=$(git log -1 --pretty=%B)
           git tag -a $VERSION -m '$MSG'
           git push --tags
-#       - name: Github Action for curl
-#         # You may pin to the exact commit or the version.
-#         # uses: wei/curl@61d92b5169ea0425820dd13cf6fbad66b483e9f1
-#         uses: wei/curl@v1.1.1
-#         with:
-#           args: |
-#             -X POST -H "Accept: application/vnd.github.v3+json;" -H "Authorization: token $(git config --global github.token)" -d "$(./git-release.sh $VERSION $MSG)" https://api.github.com/repos/$repo_full_name/releases
+      - name: Github Action for curl
+        # You may pin to the exact commit or the version.
+        # uses: wei/curl@61d92b5169ea0425820dd13cf6fbad66b483e9f1
+        uses: wei/curl@v1.1.1
+        with:
+          args: |
+            -X POST -H "Accept: application/vnd.github.v3+json;" -H "Authorization: token ${{ secrets.TOKEN }}" -d "$(./git-release.sh $VERSION $MSG)" https://api.github.com/repos/$repo_full_name/releases
      
         
 
