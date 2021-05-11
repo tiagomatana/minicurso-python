@@ -29,6 +29,7 @@ jobs:
           echo "Creating tag: "$TAG
           MSG=$(git log -1 --pretty=%B)
           git tag -a $TAG -m '$MSG'
+          git push --tags
 
             
      
