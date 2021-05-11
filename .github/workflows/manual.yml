@@ -18,7 +18,7 @@ jobs:
           git config --global user.email "tiago.matana@gmail.com"
           git config --global user.name "Tiago Matana"
           git fetch --all
-          git fetch --tags origin
+          git fetch --tags
           pip install git-semver
           git config --get remote.origin.url | grep -Po "(?<=git@github\.com:)(.*?)(?=.git)"
           VERSION=$(./git-version.sh)
