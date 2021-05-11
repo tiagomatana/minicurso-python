@@ -30,7 +30,7 @@ jobs:
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             --header 'content-type: application/json' \
             --header 'Accept: application/vnd.github.v3+json' \
-            --data '{"tag_name": $VERSION }' 
+            --data '{"tag_name": "'$VERSION'" }'
             
      
         
