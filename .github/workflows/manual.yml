@@ -25,7 +25,15 @@ jobs:
           export VERSION=$(./git-version.sh)
           MSG=$(git log -1 --pretty=%B)
           git tag -a $VERSION -m '$MSG'
-          ./git-release.sh $VERSION '$(git log -1 --pretty=%B)' $TOKEN
+          curl --request POST \
+            --url https://api.github.com/repos/${{ github.repository }}/releases \
+            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            --header 'content-type: application/json' \
+            --header 'Accept: application/vnd.github.v3+json' \
+            --data '{
+              "tag_name": $VERSION,
+              }' \
+            --fail
      
         
 

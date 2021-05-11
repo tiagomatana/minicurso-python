@@ -29,4 +29,4 @@ EOF
 }
 
 echo "Create release $version for repo: $repo_full_name branch: $branch token: $TOKEN"
-/usr/bin/curl -X POST -H "Accept: application/vnd.github.v3+json;" -H "Authorization: token $TOKEN" -d "$( generate_post_data )" https://api.github.com/repos/$repo_full_name/releases
+/usr/bin/curl -X POST -H "Accept: application/vnd.github.v3+json;" -H "Authorization: Bearer $TOKEN" -d "$( generate_post_data )" https://api.github.com/repos/$repo_full_name/releases
