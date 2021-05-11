@@ -12,7 +12,6 @@ else
 fi
 
 
-token=$(git config --global github.token)
 
 generate_post_data()
 {
@@ -29,4 +28,4 @@ EOF
 }
 
 echo "Create release $version for repo: $repo_full_name branch: $branch"
-/usr/bin/curl -X POST -H "Accept: application/vnd.github.v3+json;" -H "Authorization: token $token" -d "$( generate_post_data )" https://api.github.com/repos/$repo_full_name/releases
+/usr/bin/curl -X POST -H "Accept: application/vnd.github.v3+json;" -H "Authorization: token $TOKEN" -d "$( generate_post_data )" https://api.github.com/repos/$repo_full_name/releases
