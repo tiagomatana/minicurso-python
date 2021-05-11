@@ -17,7 +17,7 @@ jobs:
           git config --global user.name "Tiago Matana"
           git fetch --all
           git fetch --tags origin
-          git tag -a $(docker run --rm -v $(pwd):/repo codacy/git-version) -m '$(git log -1 --pretty=%B)'
+          echo $(pwd)
      
         
 
