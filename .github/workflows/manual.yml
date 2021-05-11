@@ -15,6 +15,7 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: odinr/action-npm-semver@37020c4b623853993ecaa7dd0f3d99b9ad5f2c2f
         run: |
+          apt install curl
           git config --global user.email "tiago.matana@gmail.com"
           git config --global user.name "Tiago Matana"
           git config --global github.token ${{ secrets.TOKEN }}
@@ -24,7 +25,7 @@ jobs:
           VERSION=$(./git-version.sh)
           git tag -a $VERSION -m '$(git log -1 --pretty=%B)'
           git push --tags
-          sh git-release.sh $VERSION $(git log -1 --pretty=%B)
+          ./git-release.sh $VERSION $(git log -1 --pretty=%B)
      
         
 
