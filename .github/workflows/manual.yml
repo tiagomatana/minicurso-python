@@ -12,7 +12,7 @@ jobs:
       - name: Tag
         # You may pin to the exact commit or the version.
         # uses: odinr/action-npm-semver@37020c4b623853993ecaa7dd0f3d99b9ad5f2c2f
-        run:
+        run: |
           export VERSION=$(docker run --rm -v $(pwd):/repo codacy/git-version)
-          git tag -a $VERSION -m 'New version'
+          git tag -a $VERSION -m "New version"
           
