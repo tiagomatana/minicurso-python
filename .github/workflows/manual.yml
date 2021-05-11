@@ -17,6 +17,8 @@ jobs:
         run: |
           git config --global user.email "tiago.matana@gmail.com"
           git config --global user.name "Tiago Matana"
+          git fetch --all
+          git fetch --tags
           pip install git-semver
           VERSION=$(./git-version.sh)
           git tag -a $VERSION -m '$(git log -1 --pretty=%B)'
