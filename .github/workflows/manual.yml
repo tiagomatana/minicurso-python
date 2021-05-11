@@ -20,7 +20,7 @@ jobs:
           git fetch --tags
       - name: Create Tag
         run: |   
-          VERSION=$(./git-version.sh)
+          export VERSION=$(./git-version.sh)
           MSG=$(git log -1 --pretty=%B)
           git tag -a $VERSION -m '$MSG'
           git push --tags
@@ -28,7 +28,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.TOKEN }}
         run: |
-          ./git-release.sh $VERSION $MSG $TOKEN
+          ./git-release.sh $(./git-version.sh) $(git log -1 --pretty=%B) $TOKEN
      
         
 
