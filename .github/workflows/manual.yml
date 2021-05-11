@@ -16,12 +16,12 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: odinr/action-npm-semver@37020c4b623853993ecaa7dd0f3d99b9ad5f2c2f
         run: |
+          pip install git-semver
           git config --global user.email "tiago.matana@gmail.com"
           git config --global user.name "Tiago Matana"
           git config --global github.token ${{ secrets.TOKEN }}
           git fetch --all
           git fetch --tags
-          pip install git-semver
           VERSION=$(./git-version.sh)
           MSG=$(git log -1 --pretty=%B)
           git tag -a $VERSION -m '$MSG'
