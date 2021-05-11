@@ -17,6 +17,36 @@ jobs:
           git config --global user.name "Tiago Matana"
           git fetch --all
           export VERSION=$(docker run --rm -v $(pwd):/repo codacy/git-version)
-          git tag -a $VERSION -m "New version"
-          git push --tags
-          
+      - name: Install Terraform
+        # You may pin to the exact commit or the version.
+        # uses: little-core-labs/install-terraform@1e577535d279f1999a5abf60337ddc3ff225e79d
+        uses: little-core-labs/install-terraform@v2.0.0
+        with:
+          # Version of terraform to download
+          version: '0.14.7'
+      - name: terraform-apply
+        # You may pin to the exact commit or the version.
+        # uses: dflook/terraform-apply@27cd16ab1a83b052d18d1619736a220ddc6ed3f0
+        uses: dflook/terraform-apply@v1.4.1
+        with:
+          # Path to the terraform configuration
+          path: .
+          # Name of the terraform workspace
+          #workspace: # optional, default is default
+          # Comma separated list of backend configs to set, e.g. 'foo=bar'
+          #backend_config: # optional, default is 
+          # Path to a backend config file
+          #backend_config_file: # optional, default is 
+          # Comma separated list of vars to set, e.g. 'foo=bar'
+          #var: # optional, default is 
+          # Comma separated list of var file paths
+          #var_file: # optional, default is 
+          # Limit the number of concurrent operations
+          #parallelism: # optional, default is 0
+          # A friendly name for this plan
+          #label: # optional, default is 
+          # Automatically approve and apply plan
+          auto_approve: true # optional
+          # Comma separated list of targets to apply against, e.g. 'kubernetes_secret.tls_cert_public,kubernetes_secret.tls_cert_private' NOTE: this argument only takes effect if auto_approve is also set.
+        
+
