@@ -17,4 +17,5 @@ jobs:
           git config --global user.name "Tiago Matana"
           export VERSION=$(docker run --rm -v $(pwd):/repo codacy/git-version)
           git tag -a $VERSION -m "New version"
+          git push --tags
           
