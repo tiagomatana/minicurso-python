@@ -9,6 +9,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Github Release
+        # You may pin to the exact commit or the version.
+        # uses: elgohr/Github-Release-Action@ed9ebd01a0c57e64e948e7f2ff59c0159e52c204
+        uses: elgohr/Github-Release-Action@v3.1
+        with:
+          # The name of the release to publish
+          release: "4.0.1"
+      - name: Automatic Releases
+        # You may pin to the exact commit or the version.
+        # uses: marvinpinto/action-automatic-releases@526ce12c6675bbe6e0e9a4169c90d09a3f7ad3e2
+        uses: marvinpinto/action-automatic-releases@v1.2.0
+        with:
+          # GitHub secret token
+          repo_token: ${{ secrets.TOKEN }} 
+          # Git tag (for automatic releases)
+          #automatic_release_tag: # optional
+          # Should this release be marked as a draft?
+          #draft: # optional
+          # Should this release be marked as a pre-release?
+          #prerelease: # optional, default is true
+          # Release title (for automatic releases)
+         # title: # optional
+          # Assets to upload to the release
+         # files: # optional
       - name: Tag
         # You may pin to the exact commit or the version.
         # uses: odinr/action-npm-semver@37020c4b623853993ecaa7dd0f3d99b9ad5f2c2f
@@ -17,36 +41,6 @@ jobs:
           git config --global user.name "Tiago Matana"
           git fetch --all
           export VERSION=$(docker run --rm -v $(pwd):/repo codacy/git-version)
-      - name: Install Terraform
-        # You may pin to the exact commit or the version.
-        # uses: little-core-labs/install-terraform@1e577535d279f1999a5abf60337ddc3ff225e79d
-        uses: little-core-labs/install-terraform@v2.0.0
-        with:
-          # Version of terraform to download
-          version: '0.14.7'
-      - name: terraform-apply
-        # You may pin to the exact commit or the version.
-        # uses: dflook/terraform-apply@27cd16ab1a83b052d18d1619736a220ddc6ed3f0
-        uses: dflook/terraform-apply@v1.4.1
-        with:
-          # Path to the terraform configuration
-          path: .
-          # Name of the terraform workspace
-          #workspace: # optional, default is default
-          # Comma separated list of backend configs to set, e.g. 'foo=bar'
-          #backend_config: # optional, default is 
-          # Path to a backend config file
-          #backend_config_file: # optional, default is 
-          # Comma separated list of vars to set, e.g. 'foo=bar'
-          #var: # optional, default is 
-          # Comma separated list of var file paths
-          #var_file: # optional, default is 
-          # Limit the number of concurrent operations
-          #parallelism: # optional, default is 0
-          # A friendly name for this plan
-          #label: # optional, default is 
-          # Automatically approve and apply plan
-          auto_approve: true # optional
-          # Comma separated list of targets to apply against, e.g. 'kubernetes_secret.tls_cert_public,kubernetes_secret.tls_cert_private' NOTE: this argument only takes effect if auto_approve is also set.
+     
         
 
