@@ -20,7 +20,7 @@ jobs:
           git fetch --tags
       - name: Create Tag
         env:
-          TOKEN: ${{ secrets.TOKEN }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |   
           export VERSION=$(./git-version.sh)
           MSG=$(git log -1 --pretty=%B)
@@ -33,7 +33,7 @@ jobs:
             --data '{
               "tag_name": $VERSION,
               }' \
-            --fail
+            
      
         
 
