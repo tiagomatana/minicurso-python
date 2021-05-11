@@ -11,9 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup Python
         uses: actions/setup-python@v2.2.2
-      - name: Tag
-        # You may pin to the exact commit or the version.
-        # uses: odinr/action-npm-semver@37020c4b623853993ecaa7dd0f3d99b9ad5f2c2f
+      - name: Config
         run: |
           pip install git-semver
           git config --global user.email "tiago.matana@gmail.com"
@@ -21,6 +19,10 @@ jobs:
           git config --global github.token ${{ secrets.TOKEN }}
           git fetch --all
           git fetch --tags
+      - name: Create Tag
+        # You may pin to the exact commit or the version.
+        # uses: odinr/action-npm-semver@37020c4b623853993ecaa7dd0f3d99b9ad5f2c2f
+        run: |   
           VERSION=$(./git-version.sh)
           MSG=$(git log -1 --pretty=%B)
           git tag -a $VERSION -m '$MSG'
