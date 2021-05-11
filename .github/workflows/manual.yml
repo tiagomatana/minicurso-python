@@ -27,8 +27,10 @@ jobs:
           git tag -a $VERSION -m '$MSG'
           git push --tags
       - name: Create Release
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
         run: |
-          git config --global github.token ${{ secrets.TOKEN }}
+          git config --global github.token $TOKEN
           ./git-release.sh $VERSION $MSG
      
         
