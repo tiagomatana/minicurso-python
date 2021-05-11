@@ -19,12 +19,9 @@ jobs:
           git config --global user.name "Tiago Matana"
           git fetch --all
           git fetch --tags origin
-          export TAG=''
           pip install git-semver
-          if [ $(git log -1 --pretty=%B | grep -E ^feature\: | wc -l) -gt 0 ]; then export TAG=$(git semver --next-minor); fi
-          if [ $(git log -1 --pretty=%B | grep -E ^breaking\: | wc -l) -gt 0 ]; then export TAG=$(git semver --next-major); fi
-          if [ -z $TAG ]; then export TAG=$(git semver --next-patch); fi
-          git tag -a $TAG -m $(git log -1 --pretty=%B)
+          VERSION=$(./git-version.sh)
+          git tag -a $VERSION -m $(git log -1 --pretty=%B)
      
         
 
