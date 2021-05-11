@@ -21,7 +21,8 @@ jobs:
           git fetch --tags origin
           pip install git-semver
           VERSION=$(./git-version.sh)
-          git tag -a $VERSION -m $(git log -1 --pretty=%B)
+          git tag -a $VERSION -m '$(git log -1 --pretty=%B)'
+          git push --tags
      
         
 
