@@ -2,6 +2,7 @@
 
 version=$1
 text=$2
+TOKEN=$3
 branch=$(git rev-parse --abbrev-ref HEAD)
 
 if [ $(git config --get remote.origin.url | grep -E 'git@github.com' | wc -l) -gt 0 ]
